@@ -1,4 +1,4 @@
-# pandas-ta-2-numba
+# pandas-ta 2 numba
 replaced pandas-ta calls with numpy/numba functions to speed up calculating ema, tema, rsi, mfi, plus_di, minus_di, adx, dpo indicators
 
 improved with ChatGPT 4 (free from Bing) and ChatGPT 3.5

@@ -45,8 +45,8 @@ def calculate_adx(high, low, close, period=14):
 
     #epsilon = 1e-10  # Small epsilon value to avoid division by zero
     #dx = (np.abs(plus_di - minus_di) / abs(plus_di + minus_di+ epsilon)) * 100
-    ##adx = ((np.roll(dx, 1) * (period - 1)) + dx) / period # do not calculate adx to ensure getting same results as investing.com
-    #adx_smooth = calculate_ewma(dx, period) #use dx instead of adx to ensure getting same results as investing.com
+    ##adx = ((np.roll(dx, 1) * (period - 1)) + dx) / period # do not calculate adx to ensure getting same results as investing[dot]com
+    #adx_smooth = calculate_ewma(dx, period) #use dx instead of adx to ensure getting same results as investing[dot]com, alternate is: calculate_ewma(adx, period)
     #    return plus_di, minus_di, adx_smooth # I don't use adx_smooth, if you need it remove 5 lines of # from beginnig here and up 
 
     return plus_di, minus_di # if you need adx smooth, replace: return plus_di, minus_di, adx_smooth

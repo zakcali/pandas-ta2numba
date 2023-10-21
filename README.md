@@ -16,7 +16,7 @@ dpo, plus_di, minus_di, adx outputs precisely same as calculated investing[dot]c
 rsi numba code copied from: https://github.com/boonteck/tech_inds
 
 why?
-I have 376 instruments from xu100 market. I calculate indicators for my strategy in 15m, 30m, 1h, 2h, 3h, 4h, 1day, 1week, 1month periods on each run.
+I have 376 instruments from xu100 market. I calculate indicators in 15m, 30m, 1h, 2h, 3h, 4h, 1day, 1week, 1month periods on each run.
 When I upgraded pandas library to 2.1.1 for speeding up things a little, pandas_ta's mfi function raised error, and I couln't fix the error. So I decided to convert pandas_ta calls to numpy functions, and if runs faster to numba calls. Interestingly not all numpy subroutines become faster with numba.
 I got significant improvement. whole program finishes in 39 secons instead of 117 seconds on an intel e7500 windows pc, and 12.7 seconds instead of 33 seconds on an amd 5700x windows pc.
 3x improvement on a complete python program

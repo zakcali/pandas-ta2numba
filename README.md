@@ -17,7 +17,7 @@ why?
 I have 376 instruments from xu100 market. I calculate indicators for my strategy in 15m, 30m, 1h, 2h, 4h, 3h, 4h, 1day, 1week, 1month intervals.
 When I upgraded pandas library to 2.1.1 for speeding up things a little, pandas_ta's mfi function raised error, and I couln't fix the error. So I decided to convert pandas_ta calls to numpy functions, and if runs better to numba calls.
 I got significant improvement. whole program finishes in 39 secons instead of 117 secons on an intel e7500 windows pc, and 12,75 seconds instead od 33 seconds on an amd 5700x windows pc.
-3x improvement on 475 lines of complete python program
+3x improvement on a complete python program
 
 I tried, used, and gave up installing executable ta lib on my machines:
 https://github.com/TA-Lib/ta-lib-python and

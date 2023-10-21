@@ -1,30 +1,17 @@
-# pandas-ta 2 numba
-replaced pandas-ta calls with numpy/numba functions to speed up calculating ema, tema, rsi, mfi, plus_di, minus_di, adx, dpo indicators
+Replaced pandas-ta calls with numpy/numba functions to speed up the calculation of EMA, TEMA, RSI, MFI, Plus_DI, Minus_DI, ADX, DPO indicators.
 
-improved with ChatGPT 4 (free from Bing) and ChatGPT 3.5
+Improved with ChatGPT 4 (free from Bing) and ChatGPT 3.5.
 
-mfi function->removed pd.series from code, 
+Removed pd.series from the MFI function code, using numba for speedup in TEMA calculation.
 
-using numba for speedup: tema 
+Implemented a check to quickly determine if the dataframe read from the CSV file is empty or not.
 
-checks fast if dataframe read from csv is empty or not
+The ADX code was inspired by https://medium.com/codex/does-combining-adx-and-rsi-create-a-better-profitable-trading-strategy-125a90c36ac. The ADX code was optimized for speed using numba with the assistance of ChatGPT. Some parts were adapted from https://www.quora.com/How-do-we-calculate-ADX-in-Python-for-backtesting and https://stackoverflow.com/questions/63020750/how-to-find-average-directional-movement-for-stocks-using-pandas. DPO, Plus_DI, Minus_DI, and ADX outputs precisely match those calculated on investing.com. I am proud of the improvements made to the existing code with ChatGPT.
 
-adx code inspired by: https://medium.com/codex/does-combining-adx-and-rsi-create-a-better-profitable-trading-strategy-125a90c36ac
-adx code speed up by numba with the help of chatGPT, parts are copied from: https://www.quora.com/How-do-we-calculate-ADX-in-Python-for-backtesting and from https://stackoverflow.com/questions/63020750/how-to-find-average-directional-movement-for-stocks-using-pandas
-dpo, plus_di, minus_di, adx outputs precisely same as calculated investing[dot]com, so I'm very proud of improving existing code with ChatGPT
+The RSI numba code was copied from https://github.com/boonteck/tech_inds.
 
-rsi numba code copied from: https://github.com/boonteck/tech_inds
+Why did I make these changes? I work with 376 instruments from the XU100 market. I calculate indicators in 15m, 30m, 1h, 2h, 3h, 4h, 1day, 1week, and 1month periods in each run. When I upgraded the pandas library to version 2.1.1 to speed up the process, pandas_ta's MFI function caused an error, which I couldn't resolve. So, I decided to convert pandas_ta calls to numpy functions and, if faster, to numba calls. Interestingly, not all numpy subroutines became faster with numba, but I achieved significant improvement. The entire program now finishes in 39 seconds instead of 117 seconds on an Intel E7500 Windows PC, and in 12.7 seconds instead of 33 seconds on an AMD 5700X Windows PC. This represents a 3x improvement in the complete Python program.
 
-why?
-I have 376 instruments from xu100 market. I calculate indicators in 15m, 30m, 1h, 2h, 3h, 4h, 1day, 1week, 1month periods on each run.
-When I upgraded pandas library to 2.1.1 for speeding up things a little, pandas_ta's mfi function raised error, and I couln't fix the error. So I decided to convert pandas_ta calls to numpy functions, and if runs faster to numba calls. Interestingly not all numpy subroutines become faster with numba.
-I got significant improvement. whole program finishes in 39 secons instead of 117 seconds on an intel e7500 windows pc, and 12.7 seconds instead of 33 seconds on an amd 5700x windows pc.
-3x improvement on a complete python program
+I attempted, used, and ultimately abandoned the idea of installing the executable TA-Lib on my machines: https://github.com/TA-Lib/ta-lib-python and https://ta-lib.org/install/.
 
-I tried, used, and gave up installing executable ta lib on my machines:
-https://github.com/TA-Lib/ta-lib-python and
-https://ta-lib.org/install/
-
-All of my code resides in 486 lines, I'm happy.
-It's minimally dependent upon pandas. I prefer to copy pandas series of data frame to numpy arrays, and calculations run faster.
-If you have few sybols to calculate, you may not expect a significant improvement. on the contrary execution time may increase, for example from 2 seconds to 4 seconds.
+I'm happy to report that all of my code consists of 486 lines. It has minimal dependencies on pandas. I prefer to copy pandas series from data frames to numpy arrays, which results in faster calculations. If you have only a few symbols to calculate, you may not expect significant improvement. On the contrary, execution time may increase, for example, from 2 seconds to 4 seconds.

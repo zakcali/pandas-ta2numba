@@ -5,7 +5,8 @@ improved with ChatGPT 4 (free from Bing) and ChatGPT 3.5
 
 mfi function->removed pd.series from code, 
 
-using numba for speedup: tema, check if dataframe read from csv is empty fast
+using numba for speedup: tema, 
+checks fast if dataframe read from csv is empty or not
 
 adx code inspired by: https://medium.com/codex/does-combining-adx-and-rsi-create-a-better-profitable-trading-strategy-125a90c36ac
 adx code speed up by numba with the help of chatGPT, parts are copied from: https://www.quora.com/How-do-we-calculate-ADX-in-Python-for-backtesting and from https://stackoverflow.com/questions/63020750/how-to-find-average-directional-movement-for-stocks-using-pandas

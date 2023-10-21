@@ -11,7 +11,7 @@ checks fast if dataframe read from csv is empty or not
 
 adx code inspired by: https://medium.com/codex/does-combining-adx-and-rsi-create-a-better-profitable-trading-strategy-125a90c36ac
 adx code speed up by numba with the help of chatGPT, parts are copied from: https://www.quora.com/How-do-we-calculate-ADX-in-Python-for-backtesting and from https://stackoverflow.com/questions/63020750/how-to-find-average-directional-movement-for-stocks-using-pandas
-outputs precisely same results as investing.com, so I'm very proud of impreving existing code with ChatGPT
+dpo, plus_di, minus_di, adx outputs precisely same as calculated investing[dot]com, so I'm very proud of improving existing code with ChatGPT
 
 rsi numba code copied and used from: https://github.com/boonteck/tech_inds
 

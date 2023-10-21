@@ -24,5 +24,5 @@ https://github.com/TA-Lib/ta-lib-python and
 https://ta-lib.org/install/
 
 All of my code resides in 475 lines, I'm happy.
-It's minimally dependent upon pandas. if possible, copies pandas series of data frame to numpy arrays, and calculates faster.
-If you have few stocks to calculate, you may not expect a significant improvement. on the contrary execution time may increase, for example from 2 seconds to 4 seconds.
+It's minimally dependent upon pandas. I prefer to copy pandas series of data frame to numpy arrays, and calculations run faster.
+If you have few sybols to calculate, you may not expect a significant improvement. on the contrary execution time may increase, for example from 2 seconds to 4 seconds.

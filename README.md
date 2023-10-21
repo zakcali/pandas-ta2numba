@@ -1,5 +1,5 @@
 # pandas-ta-2-numba
-replaced pandas-ta calls with numpy/numba functions to speed up calculating ema, tema, rsi, mfi, adx indicators
+replaced pandas-ta calls with numpy/numba functions to speed up calculating ema, tema, rsi, mfi, plus_di, minus_di, adx, dpo indicators
 
 improved with ChatGPT 4 (free from Bing) and ChatGPT 3.5
 
@@ -16,13 +16,13 @@ rsi numba code copied and used from: https://github.com/boonteck/tech_inds
 why?
 I have 376 instruments from xu100 market. I calculate indicators for my strategy in 15m, 30m, 1h, 2h, 4h, 3h, 4h, 1day, 1week, 1month intervals.
 When I upgraded pandas library to 2.1.1 for speeding up things a little, pandas_ta's mfi function raised error, and I couln't fix the error. So I decided to convert pandas_ta calls to numpy functions, and if runs better to numba calls.
-I got significant improvement. whole program finishes in 39 secons instead of 117 secons on an intel e7500 windows pc, and 13,2 seconds instead od 33 seconds on an amd 5700x windows pc.
+I got significant improvement. whole program finishes in 39 secons instead of 117 secons on an intel e7500 windows pc, and 12,75 seconds instead od 33 seconds on an amd 5700x windows pc.
 3x improvement on 475 lines of complete python program
 
 I tried, used, and gave up installing executable ta lib on my machines:
 https://github.com/TA-Lib/ta-lib-python and
 https://ta-lib.org/install/
 
-All of my code resides in 475 lines, I'm happy.
+All of my code resides in 486 lines, I'm happy.
 It's minimally dependent upon pandas. I prefer to copy pandas series of data frame to numpy arrays, and calculations run faster.
 If you have few sybols to calculate, you may not expect a significant improvement. on the contrary execution time may increase, for example from 2 seconds to 4 seconds.

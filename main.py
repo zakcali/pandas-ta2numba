@@ -125,12 +125,9 @@ def calculate_dpo(close, length, centered=False):
     half_length = length // 2
     shifted_close = np.roll(close, half_length + 1)
     convolved = np.convolve(shifted_close, np.ones(length) / length, mode='full')[:len(shifted_close)]
-    
     dpo_values = close[:(len(convolved))] - convolved
-    
     if centered:
         dpo_values = np.roll(dpo_values, -half_length)
-    
     return dpo_values
         
 def calculate_indicator(file_name):
@@ -140,14 +137,14 @@ def calculate_indicator(file_name):
         df_is_empty = True
     else:
         df_is_empty = False
-    if df_is_empty:  # faster than if df.empty:
+    if df_is_empty:  
         df["MFI"] = np.nan
+        df["RSI"] = np.nan
+        df["DPO"] = np.nan
     else:
         df["MFI"] = calculate_mfi(high=df["High"].values, low=df["Low"].values, close=df["Close"].values, volume=df["Volume"].values, period=MFI_PERIOD)
-    if df_is_empty: 
-        df["RSI"] = np.nan
-    else:
         df["RSI"] = calculate_rsi(df["Close"].values, RSI_PERIOD)
+        df["DPO"] = calculate_dpo(close=df["Close"].values, length=DPO_PERIOD, centered=False)  # dpo 21
     if len_dfx_index > TEMA_HORIZON:  # prevents all NaN error
         df["TEMA_HIGH"] = calculate_tema(df["Close"].values, TEMA_HIGH_PERIOD)
         df["TEMA_LOW"] = calculate_tema(df["Close"].values, TEMA_LOW_PERIOD)
@@ -163,8 +160,4 @@ def calculate_indicator(file_name):
         df["PLUS_DI"] = np.nan
         df["MINUS_DI"] = np.nan
         # df["ADX"] = np.nan
-    if df_is_empty: 
-        df["DPO"] = np.nan
-    else:
-        df["DPO"] = calculate_dpo(close=df["Close"].values, length=DPO_PERIOD, centered=False)  # dpo 21
     return df

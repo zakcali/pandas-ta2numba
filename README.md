@@ -13,7 +13,7 @@ adx code inspired by: https://medium.com/codex/does-combining-adx-and-rsi-create
 adx code speed up by numba with the help of chatGPT, parts are copied from: https://www.quora.com/How-do-we-calculate-ADX-in-Python-for-backtesting and from https://stackoverflow.com/questions/63020750/how-to-find-average-directional-movement-for-stocks-using-pandas
 dpo, plus_di, minus_di, adx outputs precisely same as calculated investing[dot]com, so I'm very proud of improving existing code with ChatGPT
 
-rsi numba code copied and used from: https://github.com/boonteck/tech_inds
+rsi numba code copied from: https://github.com/boonteck/tech_inds
 
 why?
 I have 376 instruments from xu100 market. I calculate indicators for my strategy in 15m, 30m, 1h, 2h, 3h, 4h, 1day, 1week, 1month periods on each run.

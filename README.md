@@ -5,7 +5,8 @@ improved with ChatGPT 4 (free from Bing) and ChatGPT 3.5
 
 mfi function->removed pd.series from code, 
 
-using numba for speedup: tema, 
+using numba for speedup: tema 
+
 checks fast if dataframe read from csv is empty or not
 
 adx code inspired by: https://medium.com/codex/does-combining-adx-and-rsi-create-a-better-profitable-trading-strategy-125a90c36ac

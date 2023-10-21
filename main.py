@@ -62,7 +62,6 @@ def calculate_ema(data, period):
     return ema
 
 
-@jit(nopython=True)
 def calculate_tema(data, period):
     ema1 = calculate_ema(data, period)
     ema2 = calculate_ema(ema1, period)

@@ -20,7 +20,7 @@ I got significant improvement. whole program finishes in 42 secons instead of 11
 3x improvement on 475 lines of complete python program
 
 I tried, used, and gave up installing executable ta lib on my machines:
-https://github.com/TA-Lib/ta-lib-python
+https://github.com/TA-Lib/ta-lib-python and
 https://ta-lib.org/install/
 
 All of my code resides in 475 lines, I'm happy.

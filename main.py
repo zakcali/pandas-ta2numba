@@ -9,6 +9,7 @@ TEMA_LOW_PERIOD = 35
 RSI_PERIOD = 14
 ADX_PERIOD = 21
 MFI_PERIOD = 14
+DPO_PERIOD = 21
 
 def calculate_true_range(high, low, close):
     high_low = high - low
@@ -120,6 +121,18 @@ def calculate_rsi(arr, period=21):
     result = np.concatenate((np.array([np.nan]), result))
     return result
 
+def calculate_dpo(close, length, centered=False):
+    half_length = length // 2
+    shifted_close = np.roll(close, half_length + 1)
+    convolved = np.convolve(shifted_close, np.ones(length) / length, mode='full')[:len(shifted_close)]
+    
+    dpo_values = close[:(len(convolved))] - convolved
+    
+    if centered:
+        dpo_values = np.roll(dpo_values, -half_length)
+    
+    return dpo_values
+        
 def calculate_indicator(file_name):
     df = pd.read_csv(file_name)
     len_dfx_index = len(df.index)
@@ -135,7 +148,6 @@ def calculate_indicator(file_name):
         df["RSI"] = np.nan
     else:
         df["RSI"] = calculate_rsi(df["Close"].values, RSI_PERIOD)
-
     if len_dfx_index > TEMA_HORIZON:  # prevents all NaN error
         df["TEMA_HIGH"] = calculate_tema(df["Close"].values, TEMA_HIGH_PERIOD)
         df["TEMA_LOW"] = calculate_tema(df["Close"].values, TEMA_LOW_PERIOD)
@@ -151,4 +163,8 @@ def calculate_indicator(file_name):
         df["PLUS_DI"] = np.nan
         df["MINUS_DI"] = np.nan
         # df["ADX"] = np.nan
+    if df_is_empty: 
+        df["DPO"] = np.nan
+    else:
+        df["DPO"] = calculate_dpo(close=df["Close"].values, length=DPO_PERIOD, centered=False)  # dpo 21
     return df

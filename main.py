@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from numba import jit
 
-TEMA_MIDDLE_PERIOD = 72
+TEMA_HIGH_PERIOD = 120
 TEMA_LOW_PERIOD = 35
 RSI_PERIOD = 14
 ADX_PERIOD = 21

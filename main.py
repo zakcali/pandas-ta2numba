@@ -3,7 +3,7 @@ import numpy as np
 from numba import jit
 
 TEMA_HIGH_PERIOD = 120
-TEMA_LOW_PERIOD = 35
+TEMA_LOW_PERIOD = 30
 RSI_PERIOD = 14
 ADX_PERIOD = 21
 MFI_PERIOD = 14

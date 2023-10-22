@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from numba import jit
 
-TEMA_HORIZON = 250
 TEMA_HIGH_PERIOD = 120
 TEMA_MIDDLE_PERIOD = 72
 TEMA_LOW_PERIOD = 35
@@ -144,7 +143,7 @@ def calculate_indicator(file_name):
         df["MFI"] = calculate_mfi(high=df["High"].values, low=df["Low"].values, close=df["Close"].values, volume=df["Volume"].values, period=MFI_PERIOD)
         df["RSI"] = calculate_rsi(df["Close"].values, RSI_PERIOD)
         df["DPO"] = calculate_dpo(close=df["Close"].values, length=DPO_PERIOD, centered=False)  # dpo 21
-    if len_dfx_index > TEMA_HORIZON:  # prevents all NaN error
+    if len_dfx_index > TEMA_HIGH_PERIOD:  # prevents all NaN error
         df["TEMA_HIGH"] = calculate_tema(df["Close"].values, TEMA_HIGH_PERIOD)
         df["TEMA_LOW"] = calculate_tema(df["Close"].values, TEMA_LOW_PERIOD)
     else:

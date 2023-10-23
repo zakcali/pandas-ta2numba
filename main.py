@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from numba import jit
+from time import process_time
 
 TEMA_HIGH_PERIOD = 120
 TEMA_LOW_PERIOD = 30
@@ -158,3 +159,10 @@ def calculate_indicator(file_name):
         df["MINUS_DI"] = np.nan
         # df["ADX"] = np.nan
     return df
+
+
+t = process_time()
+calculate_indicator(XU100-1D.csv)
+print("finished in", process_time() - t, "seconds")
+
+

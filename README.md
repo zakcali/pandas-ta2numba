@@ -2,8 +2,6 @@ Replaced pandas-ta calls with numpy/numba functions to speed up the calculation 
 
 Improved with ChatGPT 4 (free from Bing) and ChatGPT 3.5.
 
-Removed pd.series from the MFI function code, using numba for speedup in TEMA calculation.
-
 Implemented a check to quickly determine if the dataframe read from the CSV file is empty or not.
 
 The ADX code was inspired by https://medium.com/codex/does-combining-adx-and-rsi-create-a-better-profitable-trading-strategy-125a90c36ac. The ADX code was optimized for speed using numba with the assistance of ChatGPT. Some parts were adapted from https://www.quora.com/How-do-we-calculate-ADX-in-Python-for-backtesting and https://stackoverflow.com/questions/63020750/how-to-find-average-directional-movement-for-stocks-using-pandas. RSI, TEMA, MFI, DPO, Plus_DI, Minus_DI, and ADX outputs precisely match those calculated on investing.com. I am proud of the improvements made to the existing code with ChatGPT.
